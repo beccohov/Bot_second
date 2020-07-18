@@ -27,7 +27,7 @@ def is_strange_activity(stock,last_price):
     return delta , current_price
 def make_alert_if_needed(stock, last_price,bot):
     delt, price = is_strange_activity(stock,last_price)
-    if True:#abs(delt) > 0.0005*price:        
+    if abs(delt) > 0.0005*price:        
         text = '🌊Attention!!!!!!!!!!!!\n Stock {0} ({1}) is in unusual activity.'.format(stock['longName'],stock['symbol'])
         text += '💵Low price : {0}, High: {1}, Current - {2}'.format(stock['dayLow'],stock['dayHigh'],price)
         text += '\n Move on {0}$ to {1}$\n'.format(delt,price)    
