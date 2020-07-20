@@ -58,5 +58,5 @@ if __name__ == '__main__':
     while True:
         #bot.send_message(DIALOGUE,'The AAPL price is ' + str(get_price('AAPL')))
         prices = see_all(STOCKS,prices,bot)
-        time.sleep(10)
+        #time.sleep(10)
         
