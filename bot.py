@@ -6,7 +6,7 @@ import logging
 import time
 TOKEN = '1301051793:AAGUAMh8DMsv5bFtJnCKMrwfSP59zZ_5Rtg'
 DIALOGUE = '509779359'
-STOCKS = 'AAPL NVDA AMD MSFT NFLX INTC CSCO ATHX ADBE AEP AAL T BA KO NKE SLB AXP CAT IBM JNJ MCD MA DIS PYPL FB BABA WMT' 
+STOCKS = 'AAPL NVDA AMD MSFT NFLX INTC CSCO ATHX ADBE AEP AAL T BA KO NKE SLB AXP CAT IBM JNJ MCD MA DIS PYPL FB BABA WMT HD PEP QCOM' 
 bot = telebot.TeleBot(TOKEN)
 @bot.message_handler(commands=['start'])
 def start_hndlr(msg):
@@ -27,7 +27,7 @@ def is_strange_activity(stock,last_price):
     return delta , current_price
 def make_alert_if_needed(stock, last_price,bot):
     delt, price = is_strange_activity(stock,last_price)
-    if abs(delt) > 0.0005*price:        
+    if abs(delt) > 0.002*price:        
         text = '🌊Attention!!!!!!!!!!!!\n Stock {0} ({1}) is in unusual activity.'.format(stock['longName'],stock['symbol'])
         text += '💵Low price : {0}, High: {1}, Current - {2}'.format(stock['dayLow'],stock['dayHigh'],price)
         text += '\n Move on {0}$ to {1}$\n'.format(delt,price)    
