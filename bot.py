@@ -37,12 +37,18 @@ def make_alert_if_needed(stock, last_price,bot):
     return price
 def see_all(stock_list, last_prices,bot):
     current = 0
-    tickers = yf.Tickers(stock_list).tickers
+    tickers = yf.Tickers(stock_list).tickers    
     new_prices = []
     for t in tickers:    
-        stock = t.get_info()
-        new_prices.append(make_alert_if_needed(stock,last_prices[current],bot))
-        current += 1
+        try:
+            stock = t.get_info()
+            new_prices.append(make_alert_if_needed(stock,last_prices[current],bot))
+            current += 1
+        except:
+            new_prices.append(last_prices[current])
+            current += 1
+            bot.send_message(DIALOGUE,'Exception')
+        
     return new_prices
 def get_prices(stocks):
     tickers = yf.Tickers(stocks).tickers
@@ -55,8 +61,13 @@ def get_prices(stocks):
 if __name__ == '__main__':
     logging.getLogger('requests').setLevel(logging.CRITICAL)
     prices = get_prices(STOCKS)
+    iteration = 0
     while True:
         #bot.send_message(DIALOGUE,'The AAPL price is ' + str(get_price('AAPL')))
         prices = see_all(STOCKS,prices,bot)
+        iteration +=1
+        iteration %= 5
+        if iteration == 0:
+            bot.send_message(DIALOGUE,'Robot is working...')
         #time.sleep(10)
         
