@@ -113,6 +113,7 @@ if __name__ == '__main__':
     logging.getLogger('requests').setLevel(logging.CRITICAL)
     prices = get_prices(STOCKS)
     iteration = 0
+    bot.send_message(DIALOGUE,'Started!')
     while True:
         #bot.send_message(DIALOGUE,'The AAPL price is ' + str(get_price('AAPL')))
         prices = see_all(STOCKS,prices,bot)
