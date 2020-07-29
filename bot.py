@@ -12,9 +12,18 @@ STOCKS += ' UAL HAS MMM HOG SBUX GM EBAY SPOT APRN NOW ORLY UPS KHC MA PG EA XOM
 def get_prev_close_and_borders(tree):
     prev_close = tree.xpath(r'//span[@class="price-row-price"]')[0].text_content()
     dayL = tree.xpath(r'//div[@class="col-xs-6 no-padding-left text-left"]')[0].text_content()
-    dayL = re.search(r'\d{1,}.\d{1,}',dayL).group(0)
+    dayL = re.search(r'\d{1,}.\d{1,}',dayL)
+    if dayL:
+      dayL = dayL.group(0)
+    else:
+      dayL = 'No data'
     day_H = tree.xpath(r'//div[@class="col-xs-6 no-padding-right text-right"]')[0].text_content()
-    day_H = re.search(r'\d{1,}.\d{1,}', day_H).group(0)
+    day_H = re.search(r'\d{1,}.\d{1,}', day_H)
+    if day_H:
+      day_H = day_H.group(0)
+    else:
+      day_H = 'No data'
+    
     return prev_close,dayL,day_H
 
 def get_names(page_tree):
