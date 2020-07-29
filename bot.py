@@ -7,7 +7,7 @@ import time
 TOKEN = '1301051793:AAGUAMh8DMsv5bFtJnCKMrwfSP59zZ_5Rtg'
 DIALOGUE = '509779359'
 STOCKS = 'AAPL NVDA AMD MSFT NFLX INTC CSCO ATHX ADBE AEP AAL T BA KO NKE SLB AXP CAT IBM JNJ MCD MA DIS PYPL FB BABA WMT HD PEP QCOM' 
-STOCKS += ' UAL HAS MMM HOG SBUX GM EBAY SPOT APRN NOW ORLY UPS KHC MA PG EA XOM PINS  JPM GS RACE DPZ'
+STOCKS += ' UAL HAS MMM HOG SBUX GM EBAY SPOT APRN NOW ORLY UPS KHC MA PG EA XOM PINS JPM GS RACE DPZ MO ATVI WFC C' 
 
 def get_prev_close_and_borders(tree):
     prev_close = tree.xpath(r'//span[@class="price-row-price"]')[0].text_content()
@@ -122,6 +122,6 @@ if __name__ == '__main__':
         if iteration == 0:
             bot.send_message(DIALOGUE,'Robot is working...')
         
-        time.sleep(20)
+        time.sleep(10)
         #time.sleep(10)
         
