@@ -77,7 +77,7 @@ def make_alert_if_needed(stock_label, last_price,bot):
     stock_data = get_information_pack(stock_label)
     price = float(stock_data['price']) 
     delt = price - last_price
-    if abs(delt) > 0.003*price:     
+    if abs(delt) > 0.002*price:     
         if delt > 0:
             trand = '📈'
         else:
